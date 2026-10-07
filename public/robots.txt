@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devabdi.co.ke/sitemap.xml

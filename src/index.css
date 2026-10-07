@@ -1,0 +1,304 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --accent: #d1701f;
+    --accent-hover: #b85e15;
+    --accent-light: rgba(209, 112, 31, 0.12);
+    --accent-border: rgba(209, 112, 31, 0.35);
+  }
+
+  [data-color="brown"] {
+    --accent: #d1701f;
+    --accent-hover: #b85e15;
+    --accent-light: rgba(209, 112, 31, 0.12);
+    --accent-border: rgba(209, 112, 31, 0.35);
+  }
+
+  [data-color="cadetBlue"] {
+    --accent: #5e9e9f;
+    --accent-hover: #4d8687;
+    --accent-light: rgba(94, 158, 159, 0.14);
+    --accent-border: rgba(94, 158, 159, 0.35);
+  }
+
+  [data-color="crimson"] {
+    --accent: #e65f78;
+    --accent-hover: #d14963;
+    --accent-light: rgba(230, 95, 120, 0.14);
+    --accent-border: rgba(230, 95, 120, 0.35);
+  }
+
+  [data-color="emerald"] {
+    --accent: #10b981;
+    --accent-hover: #059669;
+    --accent-light: rgba(16, 185, 129, 0.14);
+    --accent-border: rgba(16, 185, 129, 0.35);
+  }
+
+  [data-color="purple"] {
+    --accent: #8e44ad;
+    --accent-hover: #732d91;
+    --accent-light: rgba(142, 68, 173, 0.14);
+    --accent-border: rgba(142, 68, 173, 0.35);
+  }
+
+  [data-color="sky"] {
+    --accent: #0ea5e9;
+    --accent-hover: #0284c7;
+    --accent-light: rgba(14, 165, 233, 0.14);
+    --accent-border: rgba(14, 165, 233, 0.35);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Mulish', system-ui, -apple-system, sans-serif;
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    font-family: 'Mulish', system-ui, -apple-system, sans-serif;
+    background-color: #ffffff;
+    color: #767676;
+    line-height: 1.7;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: clip;
+    position: relative;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+}
+
+/* Custom Morphing Blob Keyframes - Gentle & Slow Motion */
+@keyframes morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+.animate-morph {
+  animation: morph 22s ease-in-out infinite;
+}
+
+/* Rotating SVG Circle Badge - Smooth & Calm Motion */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 45s linear infinite;
+}
+
+/* Background Marquee Text */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marqueeScroll 25s linear infinite;
+}
+
+/* Custom styled scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Portfolio Signature Hover Animations */
+@keyframes hoverPop {
+  0%, 100% {
+    transform: scale(1);
+  }
+  33% {
+    transform: scale(1.05);
+  }
+  66% {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes slick-hover {
+  0.00% {
+    transform: translateY(20px) translateX(20px);
+  }
+  16.67% {
+    transform: translateY(-13px) translateX(-9px);
+  }
+  33.33% {
+    transform: translateY(4px) translateX(12px);
+  }
+  50.00% {
+    transform: translateY(20px) translateX(-20px);
+  }
+  66.67% {
+    transform: translateY(-3px) translateX(8px);
+  }
+  83.33% {
+    transform: translateY(-15px) translateX(-11px);
+  }
+  100.00% {
+    transform: translateY(20px) translateX(20px);
+  }
+}
+
+@keyframes slick-hover-2 {
+  0.00% {
+    transform: translateY(-20px) translateX(-20px);
+  }
+  16.67% {
+    transform: translateY(3px) translateX(-5px);
+  }
+  33.33% {
+    transform: translateY(18px) translateX(-10px);
+  }
+  50.00% {
+    transform: translateY(-20px) translateX(20px);
+  }
+  66.67% {
+    transform: translateY(3px) translateX(-8px);
+  }
+  83.33% {
+    transform: translateY(15px) translateX(11px);
+  }
+  100.00% {
+    transform: translateY(-20px) translateX(-20px);
+  }
+}
+
+/* Interactive Portfolio Signature Hover Animations */
+.project-card:hover {
+  animation: hoverPop 0.4s ease-out forwards;
+}
+
+.project-card .layer-black {
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+}
+
+.project-card:hover .layer-black {
+  animation: slick-hover-2 3s 0.2s linear infinite;
+  opacity: 1 !important;
+}
+
+.project-card .layer-color {
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+}
+
+.project-card:hover .layer-color {
+  animation: slick-hover 3s 0.2s linear infinite reverse;
+  opacity: 1 !important;
+}
+
+/* Continuous Leftward Testimonial Scroll */
+@keyframes scrollReviewsLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-reviews-scroll {
+  display: flex;
+  width: max-content;
+  animation: scrollReviewsLeft 36s linear infinite;
+  will-change: transform;
+}
+
+.animate-reviews-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Smoothly appearing and disappearing arrow in Get In Touch button */
+@keyframes arrowFadePulse {
+  0% {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  30%, 70% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(5px);
+  }
+}
+
+.animate-arrow-fade {
+  animation: arrowFadePulse 2.2s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Live Handwriting Signature Animation (jhey.dev style) */
+@keyframes drawLiveSignature {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.signature-stroke {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation-name: drawLiveSignature;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.28, 1);
+  animation-fill-mode: forwards;
+}
+
+
+
+
