@@ -19,7 +19,7 @@ export const Contact: React.FC = () => {
   const { currentColorHex } = useTheme();
   const [isDocsModalOpen, setIsDocsModalOpen] = useState(false);
 
-  const whatsappEnrollUrl = `https://wa.me/254708779692?text=${encodeURIComponent(
+  const whatsappEnrollUrl = `https://wa.me/254722353802?text=${encodeURIComponent(
     'Hello Abdi Adan, I am interested in enrolling in the Premium 1-on-1 Web Development + Deployment Coaching Course. Please share details on scheduling and commencement.'
   )}`;
 
@@ -331,7 +331,7 @@ export const Contact: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-3">
               <a
-                href={`https://wa.me/254708779692?text=${encodeURIComponent(
+                href={`https://wa.me/254722353802?text=${encodeURIComponent(
                   'Hello Abdi, I would like to get access to the Learning Documents (KES 2,150).'
                 )}`}
                 target="_blank"

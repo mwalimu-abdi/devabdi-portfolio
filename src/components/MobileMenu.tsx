@@ -127,7 +127,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 rel="noreferrer"
                 aria-label="WhatsApp"
                 className="text-neutral-500 hover:text-[#d1701f] transition-colors"
-                title="WhatsApp: +254 708 779 692"
+                title="WhatsApp: +254 722 353 802"
               >
                 <MessageCircle className="w-4 h-4" />
               </a>

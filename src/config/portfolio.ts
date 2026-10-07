@@ -85,14 +85,14 @@ export const PORTFOLIO_DATA = {
   // TODO: confirm this is the number I want clients to call.
   contact: {
     email: 'info@devabdi.co.ke',
-    phoneDisplay: '+254 708 779 692',
-    phoneRaw: '+254708779692',
-    whatsappNumber: '254708779692',
+    phoneDisplay: '+254 722 353 802',
+    phoneRaw: '+254722353802',
+    whatsappNumber: '254722353802',
     location: 'Nairobi, Kenya',
     socials: {
-      whatsapp: 'https://wa.me/254708779692',
+      whatsapp: 'https://wa.me/254722353802',
       emailLink: 'mailto:info@devabdi.co.ke',
-      phoneLink: 'tel:+254708779692',
+      phoneLink: 'tel:+254722353802',
       // TODO: Add real GitHub URL when available: 'https://github.com/your-username'
       // TODO: Add real LinkedIn URL when available: 'https://linkedin.com/in/your-username'
     },
