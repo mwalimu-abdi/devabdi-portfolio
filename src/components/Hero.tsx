@@ -5,11 +5,7 @@ import { TechIcon } from './TechIcon';
 import { smoothScrollTo } from '../utils/scroll';
 import { ArrowRight } from 'lucide-react';
 
-interface HeroProps {
-  onOpenCV?: () => void;
-}
-
-export const Hero: React.FC<HeroProps> = ({ onOpenCV }) => {
+export const Hero: React.FC = () => {
   const { currentColorHex } = useTheme();
 
   const coreSkills = [
@@ -166,3 +162,4 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCV }) => {
     </section>
   );
 };
+

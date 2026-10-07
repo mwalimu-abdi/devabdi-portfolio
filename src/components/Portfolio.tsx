@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { PORTFOLIO_DATA, Project } from '../config/portfolio';
 import { useTheme } from '../context/ThemeContext';
-import { ProjectModal } from './ProjectModal';
+const ProjectModal = React.lazy(() => import('./ProjectModal').then(m => ({ default: m.ProjectModal }))); 
 import { ExternalLink } from 'lucide-react';
 
 export const Portfolio: React.FC = () => {
@@ -124,10 +124,17 @@ export const Portfolio: React.FC = () => {
       </div>
 
       {/* Project Modal */}
-      <ProjectModal
-        project={activeProject}
-        onClose={() => setActiveProject(null)}
-      />
+        <Suspense fallback={null}>
+          <ProjectModal
+            project={activeProject}
+            onClose={() => setActiveProject(null)}
+          />
+        </Suspense>
     </section>
   );
 };
+
+
+
+
+

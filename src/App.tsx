@@ -10,14 +10,12 @@ import { Portfolio } from './components/Portfolio';
 import { Testimonials } from './components/Testimonials';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { CVModal } from './components/CVModal';
 import { MagicCursor } from './components/MagicCursor';
 import { ScrollReveal } from './components/ScrollReveal';
 import { playMenuOpenSound, playMenuCloseSound } from './utils/audio';
 
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const hasVerifiedTestimonials = PORTFOLIO_DATA.testimonials.some((t) => t.verified);
 
   const handleToggleMobileMenu = () => {
@@ -57,12 +55,12 @@ export default function App() {
         <main className="flex-1 w-full max-w-full overflow-x-clip flex flex-col">
           {/* Hero Section */}
           <ScrollReveal>
-            <Hero onOpenCV={() => setIsCVModalOpen(true)} />
+            <Hero />
           </ScrollReveal>
 
           {/* About Section */}
           <ScrollReveal>
-            <About onOpenCV={() => setIsCVModalOpen(true)} />
+            <About />
           </ScrollReveal>
 
           {/* Services & Technical Skills Section */}
@@ -90,13 +88,10 @@ export default function App() {
 
         {/* Footer */}
         <Footer />
-
-        {/* CV / Resume Modal */}
-        <CVModal
-          isOpen={isCVModalOpen}
-          onClose={() => setIsCVModalOpen(false)}
-        />
       </div>
     </ThemeProvider>
   );
 }
+
+
+

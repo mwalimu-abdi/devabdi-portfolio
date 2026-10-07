@@ -3,11 +3,7 @@ import { PORTFOLIO_DATA } from '../config/portfolio';
 import { useTheme } from '../context/ThemeContext';
 import { LiveSignature } from './LiveSignature';
 
-interface AboutProps {
-  onOpenCV: () => void;
-}
-
-export const About: React.FC<AboutProps> = ({ onOpenCV }) => {
+export const About: React.FC = () => {
   const { currentColorHex } = useTheme();
 
   return (
@@ -121,3 +117,4 @@ export const About: React.FC<AboutProps> = ({ onOpenCV }) => {
     </section>
   );
 };
+
