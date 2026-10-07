@@ -53,7 +53,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCV }) => {
                 autoPlay
                 muted
                 loop
-                preload="auto"
+                preload="metadata"
+                poster="/video/poster.jpg"
                 className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
                 style={{
                   position: 'absolute',
@@ -152,7 +153,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCV }) => {
                   alt={`Portrait of ${PORTFOLIO_DATA.personal.name}, Full-Stack Web Developer in Nairobi, Kenya`}
                   width={380}
                   height={380}
-                  loading="eager"
+                  loading="eager" fetchPriority="high"
                   decoding="async"
                   className="w-full h-full object-cover object-top"
                   style={{ backgroundColor: '#ffffff' }}

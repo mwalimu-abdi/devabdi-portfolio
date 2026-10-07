@@ -3,7 +3,7 @@
  * Clean, verified configuration for Full-Stack Web Developer in Nairobi, Kenya.
  */
 
-import abdiAvatar from '../assets/images/newprofile.png';
+import abdiAvatar from '../assets/images/newprofile.webp';
 import hrmsImage from '../assets/images/portfolio/ubs_hrms.png';
 import pmsImage from '../assets/images/portfolio/ubs_pms.png';
 import chatImage from '../assets/images/portfolio/ubs_chat.png';

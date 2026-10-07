@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+_backup_before_seo_fix/
+fix-video-and-icon.ps1
