@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
-import { PORTFOLIO_DATA } from './config/portfolio';
 import { Topbar } from './components/Topbar';
 import { MobileMenu } from './components/MobileMenu';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
-import { Services } from './components/Services';
-import { Portfolio } from './components/Portfolio';
-import { Testimonials } from './components/Testimonials';
-import { Contact } from './components/Contact';
+const Services = React.lazy(() => import('./components/Services').then(m => ({ default: m.Services }))); 
+const Portfolio = React.lazy(() => import('./components/Portfolio').then(m => ({ default: m.Portfolio }))); 
+const Contact = React.lazy(() => import('./components/Contact').then(m => ({ default: m.Contact }))); 
 import { Footer } from './components/Footer';
 import { MagicCursor } from './components/MagicCursor';
 import { ScrollReveal } from './components/ScrollReveal';
@@ -16,7 +14,6 @@ import { playMenuOpenSound, playMenuCloseSound } from './utils/audio';
 
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const hasVerifiedTestimonials = PORTFOLIO_DATA.testimonials.some((t) => t.verified);
 
   const handleToggleMobileMenu = () => {
     if (!isMobileMenuOpen) {
@@ -64,26 +61,28 @@ export default function App() {
           </ScrollReveal>
 
           {/* Services & Technical Skills Section */}
+          <Suspense fallback={null}>
+            
           <ScrollReveal>
             <Services />
           </ScrollReveal>
+          </Suspense>
 
           {/* Projects Portfolio Section */}
+          <Suspense fallback={null}>
+            
           <ScrollReveal>
             <Portfolio />
           </ScrollReveal>
-
-          {/* Testimonials Section - Rendered only when verified testimonials exist */}
-          {hasVerifiedTestimonials && (
-            <ScrollReveal>
-              <Testimonials />
-            </ScrollReveal>
-          )}
+          </Suspense>
 
           {/* Contact Section */}
+          <Suspense fallback={null}>
+            
           <ScrollReveal>
             <Contact />
           </ScrollReveal>
+          </Suspense>
         </main>
 
         {/* Footer */}
@@ -92,6 +91,17 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
