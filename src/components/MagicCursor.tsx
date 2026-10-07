@@ -1,101 +1,111 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 
 export const MagicCursor: React.FC = () => {
   const { currentColorHex } = useTheme();
-  const [pos, setPos] = useState({ x: -100, y: -100 });
-  const [outerPos, setOuterPos] = useState({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
+  const innerRef = useRef<HTMLDivElement>(null);
+  const outerRef = useRef<HTMLDivElement>(null);
+  const mouseRef = useRef({ x: -100, y: -100 });
+  const outerRefPos = useRef({ x: -100, y: -100 });
+  const animationRef = useRef<number | null>(null);
+
   useEffect(() => {
-    // Only enable magic cursor on devices with fine pointer (mouse)
     if (window.matchMedia('(pointer: coarse)').matches) {
       return;
     }
 
     const handleMouseMove = (e: MouseEvent) => {
-      setPos({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+      setIsVisible(true);
+
+      if (innerRef.current) {
+        innerRef.current.style.transform =
+          `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+      }
     };
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
+
+      const interactive =
         target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
-        target.closest('a') ||
-        target.closest('button') ||
+        !!target.closest('a') ||
+        !!target.closest('button') ||
         target.getAttribute('role') === 'button' ||
         target.tagName === 'INPUT' ||
         target.tagName === 'TEXTAREA' ||
-        target.classList.contains('cursor-pointer')
-      ) {
-        setIsHovered(true);
-      } else {
-        setIsHovered(false);
-      }
+        target.classList.contains('cursor-pointer');
+
+      setIsHovered(interactive);
     };
 
     const handleMouseLeave = () => {
       setIsVisible(false);
     };
 
+    const follow = () => {
+      const current = outerRefPos.current;
+      const target = mouseRef.current;
+
+      current.x += (target.x - current.x) * 0.18;
+      current.y += (target.y - current.y) * 0.18;
+
+      if (outerRef.current) {
+        outerRef.current.style.transform =
+          `translate3d(${current.x}px, ${current.y}px, 0) translate(-50%, -50%)`;
+      }
+
+      animationRef.current = requestAnimationFrame(follow);
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseover', handleMouseOver);
     document.addEventListener('mouseleave', handleMouseLeave);
+
+    animationRef.current = requestAnimationFrame(follow);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
       document.removeEventListener('mouseleave', handleMouseLeave);
+
+      if (animationRef.current !== null) {
+        cancelAnimationFrame(animationRef.current);
+      }
     };
-  }, [isVisible]);
-
-  // Smooth lerp for outer cursor ring
-  useEffect(() => {
-    let animId: number;
-    const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
-
-    const follow = () => {
-      setOuterPos((prev) => ({
-        x: lerp(prev.x, pos.x, 0.18),
-        y: lerp(prev.y, pos.y, 0.18),
-      }));
-      animId = requestAnimationFrame(follow);
-    };
-
-    animId = requestAnimationFrame(follow);
-    return () => cancelAnimationFrame(animId);
-  }, [pos]);
+  }, []);
 
   if (!isVisible) return null;
 
   return (
     <>
-      {/* Outer Circle Ring */}
       <div
+        ref={outerRef}
         className="fixed pointer-events-none z-50 rounded-full transition-transform duration-100 ease-out border"
         style={{
-          left: `${outerPos.x}px`,
-          top: `${outerPos.y}px`,
-          transform: `translate(-50%, -50%) scale(${isHovered ? 1.6 : 1})`,
           width: '32px',
           height: '32px',
           borderColor: currentColorHex,
           opacity: 0.7,
+          left: 0,
+          top: 0,
         }}
       />
-      {/* Inner Dot */}
+
       <div
+        ref={innerRef}
         className="fixed pointer-events-none z-50 rounded-full transition-transform duration-75 ease-out"
         style={{
-          left: `${pos.x}px`,
-          top: `${pos.y}px`,
-          transform: `translate(-50%, -50%) scale(${isHovered ? 0 : 1})`,
           width: '6px',
           height: '6px',
           backgroundColor: currentColorHex,
+          left: 0,
+          top: 0,
+          transform: 'translate3d(-100px, -100px, 0) translate(-50%, -50%)',
         }}
       />
     </>
