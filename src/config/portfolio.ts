@@ -4,12 +4,12 @@
  */
 
 import abdiAvatar from '../assets/images/newprofile.webp';
-import hrmsImage from '../assets/images/portfolio/ubs_hrms.png';
-import pmsImage from '../assets/images/portfolio/ubs_pms.png';
-import chatImage from '../assets/images/portfolio/ubs_chat.png';
-import realEstateImage from '../assets/images/real_estate_website_1791218834611.jpg';
-import schoolSystemImage from '../assets/images/school_management_system_dark.jpg';
-import personalPortfolioImage from '../assets/images/personal_portfolio_1791218856911.jpg';
+import hrmsImage from '../assets/images/portfolio/ubs_hrms.webp';
+import pmsImage from '../assets/images/portfolio/ubs_pms.webp';
+import chatImage from '../assets/images/portfolio/ubs_chat.webp';
+import realEstateImage from '../assets/images/real_estate_website_1791218834611.webp';
+import schoolSystemImage from '../assets/images/school_management_system_dark.webp';
+import personalPortfolioImage from '../assets/images/personal_portfolio_1791218856911.webp';
 
 export interface Project {
   id: string;
